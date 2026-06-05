@@ -28,17 +28,17 @@ df['gluc'] = (df['gluc'] > 1).astype(int)
 
 # 4. Draw the Categorical Plot
 def draw_cat_plot():
-    # 5. Create a DataFrame for the cat plot using pd.melt
+# 5. Create a DataFrame for the cat plot using pd.melt
     df_cat = pd.melt(
         df, 
         id_vars=['cardio'], 
         value_vars=['cholesterol', 'gluc', 'smoke', 'alco', 'active', 'overweight']
     )
 
-    # 6. Group and reformat the data to split it by cardio and show the counts
+# 6. Group and reformat the data to split it by cardio and show the counts
     df_cat = df_cat.groupby(['cardio', 'variable', 'value']).size().reset_index(name='total')
     
-    # 7. Convert data into long format and create the chart using sns.catplot()
+# 7. Convert data into long format and create the chart using sns.catplot()
     cat_plot = sns.catplot(
         x='variable', 
         y='total', 
@@ -48,16 +48,16 @@ def draw_cat_plot():
         kind='bar'
     )
 
-    # 8. Get the figure for the output
+# 8. Get the figure for the output
     fig = cat_plot.fig
 
-    # 9. Do not modify the next two lines
+# 9. Do not modify the next two lines
     fig.savefig('catplot.png')
     return fig
 
 # 10. Draw the Heat Map
 def draw_heat_map():
-    # 11. Clean the data in df_heat by filtering out incorrect segments
+# 11. Clean the data in df_heat by filtering out incorrect segments
     df_heat = df[
         (df['ap_lo'] <= df['ap_hi']) &
         (df['height'] >= df['height'].quantile(0.025)) &
@@ -66,16 +66,16 @@ def draw_heat_map():
         (df['weight'] <= df['weight'].quantile(0.975))
     ]
 
-    # 12. Calculate the correlation matrix
+# 12. Calculate the correlation matrix
     corr = df_heat.corr()
 
-    # 13. Generate a mask for the upper triangle
+# 13. Generate a mask for the upper triangle
     mask = np.triu(np.ones_like(corr, dtype=bool))
 
-    # 14. Set up the matplotlib figure
+# 14. Set up the matplotlib figure
     fig, ax = plt.subplots(figsize=(12, 12))
 
-    # 15. Plot the correlation matrix using sns.heatmap()
+# 15. Plot the correlation matrix using sns.heatmap()
     sns.heatmap(
         corr, 
         mask=mask, 
@@ -89,7 +89,7 @@ def draw_heat_map():
         cbar_kws={"shrink": .5}
     )
 
-    # 16. Do not modify the next two lines
+# 16. Do not modify the next two lines
     fig.savefig('heatmap.png')
     return fig
 
