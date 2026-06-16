@@ -1,5 +1,5 @@
 # ================================================================================
-#          MEDICAL DATA VISUALIZER: COMPLETE FILE SUITE FOR FREECODECAMP
+#                           MEDICAL DATA VISUALIZER
 # ================================================================================
 
 This master block contains all three essential files needed to pass the freeCodeCamp 
